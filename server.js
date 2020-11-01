@@ -132,9 +132,9 @@ app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
 
 const port = process.env.PORT || 3001;
 
-app.get("*", (req, req) => {
+/*app.get("*", (req, req) => {
   res.sendFile(path.join(__dirname, "client/build/index.html"))
-});
+});*/
 
 app.listen(port, () => {
   console.log(`server is up and listening on port ${port}`);
