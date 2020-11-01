@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const db = require("./db");
 const morgan = require("morgan");
+const path = require("path")
 
 const app = express();
 
@@ -10,6 +11,10 @@ app.use(morgan("tiny"));
 
 app.use(cors());
 app.use(express.json());
+
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static(path.join(__dirname, "client/build")));
+}
 
 //Get ALL restaurants
 app.get("/api/v1/restaurants", async (req, res) => {
@@ -126,6 +131,10 @@ app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
 });
 
 const port = process.env.PORT || 3001;
+
+app.get("*", (req, req) => {
+  res.sendFile(path.join(__dirname, "client/build/index.html"))
+});
 
 app.listen(port, () => {
   console.log(`server is up and listening on port ${port}`);
