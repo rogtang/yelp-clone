@@ -130,12 +130,12 @@ app.post("/api/v1/restaurants/:id/addReview", async (req, res) => {
   }
 });
 
-const port = process.env.PORT || 3001;
+//const port = process.env.PORT || 3000;
 
 /*app.get("*", (req, req) => {
   res.sendFile(path.join(__dirname, "client/build/index.html"))
 });*/
 
-app.listen(port, () => {
+app.listen(process.env.PORT || 3000, () => {
   console.log(`server is up and listening on port ${port}`);
 });
